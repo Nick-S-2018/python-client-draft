@@ -146,14 +146,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_instance = search_api.SearchApi(api_client)
     search_request = SearchRequest(
         index="test",
-        fulltext_filter=,
-        attr_filter=,
+        fulltext_filter={},
+        attr_filter={},
         limit=1,
         offset=1,
         max_matches=1,
-        sort=[
-            ,
-        ],
+        sort=[],
         sort_old=[{"test":"asc"},"id"],
         aggs=[
             Aggregation(
@@ -165,8 +163,35 @@ with manticoresearch.ApiClient(configuration) as api_client:
         expressions=[
             {},
         ],
-        highlight=Highlight(),
-        source=,
+        highlight=Highlight(
+            fieldnames=["title","content"],
+            fields=[
+                HighlightField(
+                    name="name_example",
+                    limit=1,
+                    limit_words=1,
+                    limit_snippets=1,
+                ),
+            ],
+            encoder="default",
+            highlight_query=FulltextFilter(),
+            pre_tags="<strong>",
+            post_tags="</strong>",
+            no_match_size=0,
+            fragment_size=256,
+            number_of_fragments=0,
+            limits_per_field=False,
+            use_boundaries=False,
+            force_all_words=False,
+            allow_empty=False,
+            emit_zones=False,
+            force_snippets=False,
+            around=5,
+            start_snippet_id=1,
+            html_strip_mode="none",
+            snippet_boundary="sentence",
+        ),
+        source={},
         options={},
         profile=True,
     ) # SearchRequest | 
@@ -180,112 +205,232 @@ with manticoresearch.ApiClient(configuration) as api_client:
         print("Exception when calling SearchApi->search: %s\n" % e)
 
 
-    # An example of the alternative way to build search requests using auxillary query objects
-    search_req = manticoresearch.model.SearchRequest()
-          
+    # Examples of the alternative way to build search requests using auxillary query objects
+    
     #Setting a search index:
+    search_req = manticoresearch.model.SearchRequest()
     search_req.index = 'test'
-  
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
     #Setting extra search settings:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.offset = 0
     search_req.limit = 10
     search_req.profile = True
     search_req.options = {'ranker': 'bm25'}
+    search_req.options['retry_count'] = 2
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on search options see https://manual.manticoresearch.com/Searching/Options#Search-options   
 
-    #Setting the `_source` property:
+    #Setting the `_source` property with a single field:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.source = 'field1'
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Setting the `_source` property with multiple fields:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.source = ['field1', 'field2*']
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
 
-    #setting `_source` property with auxillary object
+    #setting the `_source` property with auxillary SourceByRules object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.source = manticoresearch.model.SourceByRules()
     search_req.source.includes = ['field1', 'field2*']
     search_req.source.excludes = ['field3']
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on the `source` property see https://manual.manticoresearch.com/Searching/Search_results#Source-selection
 
     #Setting the `sort` property:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.sort = ['body']
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
 
-    #setting `sort` property with auxillary obejcts
+    #setting `sort` property with auxillary objects
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
+    search_req.sort = ['body']
     sort2 = manticoresearch.model.SortOrder('price', 'desc')
     sort3 = manticoresearch.model.SortMVA('codes', 'desc', 'max')
     search_req.sort += [sort2,sort3]
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on sorting see https://manual.manticoresearch.com/Searching/Sorting_and_ranking#HTTP
 
     #Setting the `expressions` property:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     expr = {'expr': 'min(price,15)'}
     search_req.expressions = [expr]
     search_req.expressions += [ {'expr2': 'max(price,15)'} ]
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on expressions see https://manual.manticoresearch.com/Searching/Expressions#Expressions-in-HTTP-JSON
     
     #Setting the `aggs` property with auxillary object:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     agg1 = manticoresearch.model.Aggregation('agg1', 'body', 10)
     search_req.aggs = [agg1] + [ manticoresearch.model.Aggregation('agg2', 'price') ]
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on aggregations see https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations
 
     #Settting the `highlight` property with auxillary object:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     highlight = manticoresearch.model.Highlight()
     highlight.fieldnames = ['body']
-    highlight.test = 1
     highlight.post_tags = '</post_tag>'
     highlight.encoder = 'default'
     highlight.snippet_boundary = 'sentence'
-    search_req.highlight = highlight 
+    search_req.highlight = highlight
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response) 
 
-    # settting `highlight.fields` property with auxillary object
+    # settting `highlight.fields` property with auxillary HighlightField object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     highlightField = manticoresearch.model.HighlightField('body')
     highlightField2 = manticoresearch.model.HighlightField('price', 5, 10)
     highlight.fields = [highlightField, highlightField2]
-    search_req.highlight = highlight 
+    search_req.highlight = highlight
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response) 
     #For detailed information on highlighting see https://manual.manticoresearch.com/Searching/Highlighting#Highlighting
 
-    #Setting the `fulltext_filter` property using different filter objects:
+    #Setting the `fulltext_filter` property using different fulltext filter objects:
+    
+    #Using QueryFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.fulltext_filter = manticoresearch.model.QueryFilter('test')
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using MatchFilter object
+    search_req = manticoresearch.model.SearchRequestindex='test'()
+    
     search_req.fulltext_filter = manticoresearch.model.MatchFilter('test', 'title')
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using MatchPhraseFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.fulltext_filter = manticoresearch.model.MatchPhraseFilter('test phrase', 'title')
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using MatchOpFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.fulltext_filter = manticoresearch.model.MatchOpFilter('test1 test2', 'title', 'and')
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on fulltext filters see https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP
 
-    #Setting the `attr_filter` property using different filter objects:
+    #Setting the `attr_filter` property using different attribute filter objects:
+    
+    #Using EqualsFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     search_req.attr_filter = manticoresearch.model.EqualsFilter('price', 20)
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using InFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
     
     inFilter = manticoresearch.model.InFilter('price', [1,2])
     inFilter.values += [10,11]
     search_req.attr_filter = inFilter
     
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using RangeFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
     rangeFilter = manticoresearch.model.RangeFilter('price', lte = 20)
     rangeFilter.gte = 5
-    search_req.attr_filter = rangeFilter
     rangeFilter.gt = 100
     rangeFilter.lt = 200
     search_req.attr_filter = rangeFilter
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    #For detailed information on range filters see https://manual.manticoresearch.com/Searching/Filters#Range-filters
+        
+    #Using GeoFilter object
+    search_req = manticoresearch.model.SearchRequest(index='test')
     
     geoFilter = manticoresearch.model.GeoDistanceFilter(location_anchor={'lat':10,'lon':20}, location_source='field1,field2')
     geoFilter.location_source='field3,field4'
     geoFilter.distance_type='adaptive'
     geoFilter.distance='100 km'
     search_req.attr_filter = geoFilter
-    #For detailed information on range filters see https://manual.manticoresearch.com/Searching/Filters#Range-filters
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on geo distance filters see https://manual.manticoresearch.com/Searching/Filters#Geo-distance-filters
 
     #Setting the `attr_filter` property using bool filter object:
+    search_req = manticoresearch.model.SearchRequest(index='test')
+    
+    boolFilter = manticoresearch.model.BoolFilter()
+    boolFilter.must = [ manticoresearch.model.EqualsFilter('body', 'test') ]
+    search_req.attr_filter = boolFilter
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
     boolFilter = manticoresearch.model.BoolFilter()
     boolFilter.must_not = [ manticoresearch.model.EqualsFilter('body', 'test') ]
     search_req.attr_filter = boolFilter
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
+    
+    #Using nested bool filters
+    search_req = manticoresearch.model.SearchRequest(index='test')
     
     fulltext_filter = manticoresearch.model.MatchFilter('test', 'title')
     nestedBoolFilter = manticoresearch.model.BoolFilter()
     nestedBoolFilter.should = [manticoresearch.model.EqualsFilter('code', 'a'), fulltext_filter]
-    boolFilter.must = [nestedBoolFilter]
     
+    boolFilter.must = [nestedBoolFilter]
     boolFilter.must += [ manticoresearch.model.EqualsFilter('price', 10) ]
     search_req.attr_filter = boolFilter
+    
+    api_response = api_instance.search(search_req)
+    pprint(api_response)
     #For detailed information on Bool queries see https://manual.manticoresearch.com/Searching/Filters#bool-query
     
-    #Sending the search request we've built and getting the response:
-    pprint(search_req)
-    api_response = search_api.search(search_req)
-    pprint(api_response)
 
 ```
 ### Parameters
