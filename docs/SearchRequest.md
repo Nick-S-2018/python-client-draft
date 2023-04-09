@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **source** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **options** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
 **profile** | **bool** |  | [optional] 
+**track_scores** | **bool** |  | [optional] 
 
 [[Using in search requests]](SearchApi.md#SearchRequest)
 

@@ -203,6 +203,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
         source={},
         options={},
         profile=True,
+        track_scores=True,
     ) # SearchRequest  
 
     # example passing only required values which don't have defaults set
