@@ -129,6 +129,7 @@ For more information about the match query syntax and additional parameters that
 
 ### Example
 
+### SearchRequest
 ```python
 import manticoresearch
 from manticoresearch.api import search_api
@@ -526,9 +527,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### Example of how to build search requests using the alternative way with a single dictionary object 
 ```python
-	search_req = '{"index":"hn_small","query":{"query_string":"@comment_text \"find joe fast \"/2"}, "_source": ["story_author","comment_author"], "limit":1}'
+    search_req = '{"index":"hn_small","query":{"query_string":"@comment_text \"find joe fast \"/2"}, "_source": ["story_author","comment_author"], "limit":1}'
 
-	api_response = api_instance.search(search_req)
+    api_response = api_instance.search(search_req)
     pprint(api_response)
 ```
 
