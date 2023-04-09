@@ -51,10 +51,11 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = search_api.SearchApi(api_client)
-    index = "index_example" # str | Name of the percolate index
+
+    index = "index_example" # str  |( Name of the percolate index  
     percolate_request = PercolateRequest(
-        query={},
-    ) # PercolateRequest | 
+        query=PercolateRequestQuery(),
+    ) # PercolateRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -64,7 +65,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling SearchApi->percolate: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -119,7 +123,7 @@ It responds with an object with:
   {'took':10,'timed_out':false,'hits':{'total':2,'hits':[{'_id':'1','_score':1,'_source':{'gid':11}},{'_id':'2','_score':1,'_source':{'gid':12}}]}}
   ```
 
-Alternatively, you can use auxillary query objects to build your search queries as it's shown in the example below.
+Alternatively, you can use auxiliary query objects to build your search queries as it's shown in the example below.
 For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP.
 
 
@@ -144,8 +148,10 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = search_api.SearchApi(api_client)
+
     search_request = SearchRequest(
         index="test",
+        query={},
         fulltext_filter={},
         attr_filter={},
         limit=1,
@@ -174,7 +180,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
                 ),
             ],
             encoder="default",
-            highlight_query=FulltextFilter(),
+            highlight_query=QueryFilter(
+                query_string="query_string_example",
+            ),
             pre_tags="<strong>",
             post_tags="</strong>",
             no_match_size=0,
@@ -194,7 +202,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
         source={},
         options={},
         profile=True,
-    ) # SearchRequest | 
+    ) # SearchRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -205,8 +213,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
         print("Exception when calling SearchApi->search: %s\n" % e)
 
 
-    # Examples of the alternative way to build search requests using auxillary query objects
-    
+```
+### Building a search request with auxiliary objects
+```python
     #Setting a search index:
     search_req = manticoresearch.model.SearchRequest()
     search_req.index = 'test'
@@ -242,7 +251,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+```
 
+### SourceByRules
+
+[[SourceByRules]](SourceByRules.md)
+```python
     #setting the `_source` property with auxillary SourceByRules object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -254,6 +268,8 @@ with manticoresearch.ApiClient(configuration) as api_client:
     pprint(api_response)
     #For detailed information on the `source` property see https://manual.manticoresearch.com/Searching/Search_results#Source-selection
 
+### Sort
+```python
     #Setting the `sort` property:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -261,7 +277,14 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+```
 
+### SortOrder
+### SortMVA
+
+[[SortOrder]](SortOrder.md)
+[[SortMVA]](SortMVA.md)
+```python
     #setting `sort` property with auxillary objects
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -273,7 +296,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response)
     #For detailed information on sorting see https://manual.manticoresearch.com/Searching/Sorting_and_ranking#HTTP
+```
 
+### Expressions
+```python    
     #Setting the `expressions` property:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -284,7 +310,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response)
     #For detailed information on expressions see https://manual.manticoresearch.com/Searching/Expressions#Expressions-in-HTTP-JSON
-    
+```
+
+### Aggregation
+
+[[Aggregation]](Aggregation.md)
+```python    
     #Setting the `aggs` property with auxillary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -293,8 +324,14 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    #For detailed information on aggregations see https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations
 
+    #For detailed information on aggregations see https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations
+```
+
+### Highlight
+
+[[Highlight]](Highlight.md)
+```python
     #Settting the `highlight` property with auxillary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -307,7 +344,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response) 
+```
 
+#### HighlightField
+
+[[HighlightField]](HighlightField.md)
+```python
     # settting `highlight.fields` property with auxillary HighlightField object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -319,17 +361,30 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response) 
     #For detailed information on highlighting see https://manual.manticoresearch.com/Searching/Highlighting#Highlighting
+```
 
+### FulltextFilter
+```python
     #Setting the `fulltext_filter` property using different fulltext filter objects:
     
     #Using QueryFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
-    
+```
+
+#### QueryFilter
+
+[[QueryFilter]](QueryFilter.md)
+```python    
     search_req.fulltext_filter = manticoresearch.model.QueryFilter('test')
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    
+```
+
+#### MatchFilter
+
+[[MatchFilter]](MatchFilter.md)
+```python    
     #Using MatchFilter object
     search_req = manticoresearch.model.SearchRequestindex='test'()
     
@@ -337,7 +392,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    
+```
+
+#### MatchPhraseFilter
+
+[[MatchPhraseFilter]](MatchPhraseFilter.md)
+```python    
     #Using MatchPhraseFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -348,13 +408,25 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     #Using MatchOpFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
-    
+```
+
+#### MatchOpFilter
+
+[[MatchOpFilter]](MatchOpFilter.md)
+```python    
+	#Using MatchOpFilter object
     search_req.fulltext_filter = manticoresearch.model.MatchOpFilter('test1 test2', 'title', 'and')
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
     #For detailed information on fulltext filters see https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP
+```
 
+### AttrFilter
+#### EqualsFilter
+
+[[EqualsFilter]](EqualsFilter.md)
+```python
     #Setting the `attr_filter` property using different attribute filter objects:
     
     #Using EqualsFilter object
@@ -364,7 +436,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    
+```
+
+#### InFilter
+
+[[InFilter]](InFilter.md)
+```python
     #Using InFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -374,7 +451,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    
+```
+
+#### RangeFilter
+
+[[RangeFilter]](RangeFilter.md)
+```python
     #Using RangeFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -386,8 +468,13 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
-    #For detailed information on range filters see https://manual.manticoresearch.com/Searching/Filters#Range-filters
-        
+	#For detailed information on range filters see https://manual.manticoresearch.com/Searching/Filters#Range-filters
+```
+
+#### GeoDistanceFilter
+
+[[GeoDistanceFilter]](GeoDistanceFilter.md)
+```python
     #Using GeoFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -400,7 +487,12 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response)
     #For detailed information on geo distance filters see https://manual.manticoresearch.com/Searching/Filters#Geo-distance-filters
+```
 
+#### BoolFilter
+
+[[BoolFilter]](BoolFilter.md)
+```python
     #Setting the `attr_filter` property using bool filter object:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
@@ -430,9 +522,17 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response)
     #For detailed information on Bool queries see https://manual.manticoresearch.com/Searching/Filters#bool-query
-    
-
 ```
+
+### Example of how to build search requests using the alternative way with a single dictionary object 
+```python
+	search_req = '{"index":"hn_small","query":{"query_string":"@comment_text \"find joe fast \"/2"}, "_source": ["story_author","comment_author"], "limit":1}'
+
+	api_response = api_instance.search(search_req)
+    pprint(api_response)
+```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes

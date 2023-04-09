@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **distance_type** | **str** |  | [optional] 
 **distance** | **str** |  | [optional] 
 
+[[Using in search requests]](SearchApi.md#GeoDistanceFilter)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

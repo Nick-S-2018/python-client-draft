@@ -5,8 +5,10 @@ Query aggregation object
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**field** | **str** |  | [optional] 
+**field** | **str** |  | 
 **size** | **int** |  | [optional] [default to 20]
+
+[[Using in search requests]](SearchApi.md#Aggregation)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

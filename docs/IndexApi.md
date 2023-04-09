@@ -58,7 +58,8 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = index_api.IndexApi(api_client)
-    body = "["'{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"title\": \"Title 1\"}}},\\n{\"insert\": {\"index\": \"test\", \"id\": 2, \"doc\": {\"title\": \"Title 2\"}}}'"]" # str | 
+
+    body = "["'{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"title\": \"Title 1\"}}},\\n{\"insert\": {\"index\": \"test\", \"id\": 2, \"doc\": {\"title\": \"Title 2\"}}}'"]" # str  
 
     # example passing only required values which don't have defaults set
     try:
@@ -68,7 +69,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling IndexApi->bulk: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -144,12 +148,13 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = index_api.IndexApi(api_client)
+
     delete_document_request = DeleteDocumentRequest(
         index="index_example",
         cluster="cluster_example",
         id=1,
         query={},
-    ) # DeleteDocumentRequest | 
+    ) # DeleteDocumentRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -159,7 +164,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling IndexApi->delete: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -233,12 +241,13 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = index_api.IndexApi(api_client)
+
     insert_document_request = InsertDocumentRequest(
         index="index_example",
         cluster="cluster_example",
         id=1,
         doc={},
-    ) # InsertDocumentRequest | 
+    ) # InsertDocumentRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -248,7 +257,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling IndexApi->insert: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -310,12 +322,13 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = index_api.IndexApi(api_client)
+
     insert_document_request = InsertDocumentRequest(
         index="index_example",
         cluster="cluster_example",
         id=1,
         doc={},
-    ) # InsertDocumentRequest | 
+    ) # InsertDocumentRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -325,7 +338,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling IndexApi->replace: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -400,12 +416,13 @@ configuration = manticoresearch.Configuration(
 with manticoresearch.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = index_api.IndexApi(api_client)
+
     update_document_request = UpdateDocumentRequest(
         index="index_example",
         doc={},
         id=1,
         query={},
-    ) # UpdateDocumentRequest | 
+    ) # UpdateDocumentRequest  
 
     # example passing only required values which don't have defaults set
     try:
@@ -415,7 +432,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
     except manticoresearch.ApiException as e:
         print("Exception when calling IndexApi->update: %s\n" % e)
 
+
 ```
+
+
 ### Parameters
 
 Name | Type | Description  | Notes
