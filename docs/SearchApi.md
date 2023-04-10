@@ -259,7 +259,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[SourceByRules]](SourceByRules.md)
 ```python
-    #setting the `_source` property with auxillary SourceByRules object
+    #Setting the `_source` property with an auxillary SourceByRules object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     search_req.source = manticoresearch.model.SourceByRules()
@@ -287,7 +287,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 [[SortOrder]](SortOrder.md)
 [[SortMVA]](SortMVA.md)
 ```python
-    #setting `sort` property with auxillary objects
+    #Setting the `sort` property with auxiliary objects
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     search_req.sort = ['body']
@@ -318,7 +318,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[Aggregation]](Aggregation.md)
 ```python    
-    #Setting the `aggs` property with auxillary object:
+    #Setting the `aggs` property with an auxiliary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     agg1 = manticoresearch.model.Aggregation('agg1', 'body', 10)
@@ -334,7 +334,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[Highlight]](Highlight.md)
 ```python
-    #Settting the `highlight` property with auxillary object:
+    #Settting the `highlight` property with an auxiliary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     highlight = manticoresearch.model.Highlight()
@@ -346,13 +346,14 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response) 
+    #For detailed information on highlighting see https://manual.manticoresearch.com/Searching/Highlighting#Highlighting
 ```
 
 #### HighlightField
 
 [[HighlightField]](HighlightField.md)
 ```python
-    # settting `highlight.fields` property with auxillary HighlightField object
+    #Settting the `highlight.fields` property with an auxiliary HighlightField object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     highlightField = manticoresearch.model.HighlightField('body')
@@ -369,7 +370,6 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ```python
     #Setting the `fulltext_filter` property using different fulltext filter objects:
     
-    #Using QueryFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
 ```
 
@@ -377,30 +377,35 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[QueryFilter]](QueryFilter.md)
 ```python    
+	#Using a QueryFilter object
     search_req.fulltext_filter = manticoresearch.model.QueryFilter('test')
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+    
+    #For detailed information on fulltext filters see https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP
 ```
 
 #### MatchFilter
 
 [[MatchFilter]](MatchFilter.md)
 ```python    
-    #Using MatchFilter object
+    #Using a MatchFilter object
     search_req = manticoresearch.model.SearchRequestindex='test'()
     
     search_req.fulltext_filter = manticoresearch.model.MatchFilter('test', 'title')
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+    
+    #For detailed information on fulltext filters see https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP
 ```
 
 #### MatchPhraseFilter
 
 [[MatchPhraseFilter]](MatchPhraseFilter.md)
 ```python    
-    #Using MatchPhraseFilter object
+    #Using a MatchPhraseFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     search_req.fulltext_filter = manticoresearch.model.MatchPhraseFilter('test phrase', 'title')
@@ -408,15 +413,14 @@ with manticoresearch.ApiClient(configuration) as api_client:
     api_response = api_instance.search(search_req)
     pprint(api_response)
     
-    #Using MatchOpFilter object
-    search_req = manticoresearch.model.SearchRequest(index='test')
+    #For detailed information on fulltext filters see https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP
 ```
 
 #### MatchOpFilter
 
 [[MatchOpFilter]](MatchOpFilter.md)
 ```python    
-	#Using MatchOpFilter object
+	#Using a MatchOpFilter object
     search_req.fulltext_filter = manticoresearch.model.MatchOpFilter('test1 test2', 'title', 'and')
     
     api_response = api_instance.search(search_req)
@@ -431,20 +435,22 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ```python
     #Setting the `attr_filter` property using different attribute filter objects:
     
-    #Using EqualsFilter object
+    #Using an EqualsFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     search_req.attr_filter = manticoresearch.model.EqualsFilter('price', 20)
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+    
+    #For detailed information on equality filters see https://manual.manticoresearch.com/Searching/Filters#Equality-filters
 ```
 
 #### InFilter
 
 [[InFilter]](InFilter.md)
 ```python
-    #Using InFilter object
+    #Using an InFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     inFilter = manticoresearch.model.InFilter('price', [1,2])
@@ -453,13 +459,15 @@ with manticoresearch.ApiClient(configuration) as api_client:
     
     api_response = api_instance.search(search_req)
     pprint(api_response)
+    
+    #For detailed information on set filters see https://manual.manticoresearch.com/Searching/Filters#Set-filters
 ```
 
 #### RangeFilter
 
 [[RangeFilter]](RangeFilter.md)
 ```python
-    #Using RangeFilter object
+    #Using a RangeFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     rangeFilter = manticoresearch.model.RangeFilter('price', lte = 20)
@@ -477,7 +485,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[GeoDistanceFilter]](GeoDistanceFilter.md)
 ```python
-    #Using GeoFilter object
+    #Using a GeoFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
     
     geoFilter = manticoresearch.model.GeoDistanceFilter(location_anchor={'lat':10,'lon':20}, location_source='field1,field2')
