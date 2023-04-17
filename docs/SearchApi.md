@@ -218,6 +218,8 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ```
 ### Building a search request with auxiliary objects
+
+[[Detailed information on search options]](https://manual.manticoresearch.com/Searching/Options#Search-options)
 ```python
     #Setting a search index:
     search_req = manticoresearch.model.SearchRequest()
@@ -259,7 +261,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[SourceByRules]](SourceByRules.md)
 
-[[Detailed information on search options]](https://manual.manticoresearch.com/Searching/Options#Search-options)
+[[Detailed information on the `source` property]](https://manual.manticoresearch.com/Searching/Search_results#Source-selection)
 ```python
     #Setting the `_source` property with an auxillary SourceByRules object
     search_req = manticoresearch.model.SearchRequest(index='test')
