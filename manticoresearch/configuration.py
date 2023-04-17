@@ -382,7 +382,7 @@ class Configuration(object):
         """
         return [
             {
-                'url': "http://127.0.0.1:9308/",
+                'url': "http://127.0.0.1:9308",
                 'description': "Default Manticore Search HTTP",
             }
         ]

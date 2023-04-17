@@ -83,6 +83,8 @@ class UpdateResponse(object):
         """
 
         self._index = index
+        
+
     @property
     def updated(self):
         """Gets the updated of this UpdateResponse.  # noqa: E501
@@ -102,6 +104,8 @@ class UpdateResponse(object):
         """
 
         self._updated = updated
+        
+
     @property
     def id(self):
         """Gets the id of this UpdateResponse.  # noqa: E501
@@ -121,6 +125,8 @@ class UpdateResponse(object):
         """
 
         self._id = id
+        
+
     @property
     def result(self):
         """Gets the result of this UpdateResponse.  # noqa: E501
@@ -140,6 +146,8 @@ class UpdateResponse(object):
         """
 
         self._result = result
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

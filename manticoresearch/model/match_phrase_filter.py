@@ -73,6 +73,8 @@ class MatchPhraseFilter(object):
             raise ValueError("Invalid value for `query_phrase`, must not be `None`")  # noqa: E501
 
         self._query_phrase = query_phrase
+        
+
     @property
     def query_fields(self):
         """Gets the query_fields of this MatchPhraseFilter.  # noqa: E501
@@ -94,6 +96,8 @@ class MatchPhraseFilter(object):
             raise ValueError("Invalid value for `query_fields`, must not be `None`")  # noqa: E501
 
         self._query_fields = query_fields
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

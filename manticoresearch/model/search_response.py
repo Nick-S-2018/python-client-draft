@@ -93,6 +93,8 @@ class SearchResponse(object):
         """
 
         self._took = took
+        
+
     @property
     def timed_out(self):
         """Gets the timed_out of this SearchResponse.  # noqa: E501
@@ -112,6 +114,8 @@ class SearchResponse(object):
         """
 
         self._timed_out = timed_out
+        
+
     @property
     def aggregations(self):
         """Gets the aggregations of this SearchResponse.  # noqa: E501
@@ -131,6 +135,8 @@ class SearchResponse(object):
         """
 
         self._aggregations = aggregations
+        
+
     @property
     def hits(self):
         """Gets the hits of this SearchResponse.  # noqa: E501
@@ -150,6 +156,8 @@ class SearchResponse(object):
         """
 
         self._hits = hits
+        
+
     @property
     def profile(self):
         """Gets the profile of this SearchResponse.  # noqa: E501
@@ -169,6 +177,8 @@ class SearchResponse(object):
         """
 
         self._profile = profile
+        
+
     @property
     def warning(self):
         """Gets the warning of this SearchResponse.  # noqa: E501
@@ -188,6 +198,8 @@ class SearchResponse(object):
         """
 
         self._warning = warning
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

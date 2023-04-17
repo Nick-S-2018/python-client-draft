@@ -5,9 +5,9 @@ Query Highlight field with options set
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**limit** | **int** |  | [optional] 
-**limit_words** | **int** |  | [optional] 
-**limit_snippets** | **int** |  | [optional] 
+**limit** | **int** |  | [optional] [default to 256]
+**limit_words** | **int** |  | [optional] [default to 0]
+**limit_snippets** | **int** |  | [optional] [default to 0]
 
 [[Using in search requests]](SearchApi.md#HighlightField)
 

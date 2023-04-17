@@ -73,6 +73,8 @@ class MatchFilter(object):
             raise ValueError("Invalid value for `query_string`, must not be `None`")  # noqa: E501
 
         self._query_string = query_string
+        
+
     @property
     def query_fields(self):
         """Gets the query_fields of this MatchFilter.  # noqa: E501
@@ -94,6 +96,8 @@ class MatchFilter(object):
             raise ValueError("Invalid value for `query_fields`, must not be `None`")  # noqa: E501
 
         self._query_fields = query_fields
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

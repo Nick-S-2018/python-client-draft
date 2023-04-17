@@ -33,12 +33,15 @@ class Highlight(object):
         'fieldnames': '[str]',
         'fields': '[HighlightField]',
         'encoder': 'str',
-        'highlight_query': 'FulltextFilter',
+        'highlight_query': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type',
         'pre_tags': 'str',
         'post_tags': 'str',
         'no_match_size': 'int',
         'fragment_size': 'int',
         'number_of_fragments': 'int',
+        'limit': 'int',
+        'limit_words': 'int',
+        'limit_snippets': 'int',
         'limits_per_field': 'bool',
         'use_boundaries': 'bool',
         'force_all_words': 'bool',
@@ -61,6 +64,9 @@ class Highlight(object):
         'no_match_size': 'no_match_size',
         'fragment_size': 'fragment_size',
         'number_of_fragments': 'number_of_fragments',
+        'limit': 'limit',
+        'limit_words': 'limit_words',
+        'limit_snippets': 'limit_snippets',
         'limits_per_field': 'limits_per_field',
         'use_boundaries': 'use_boundaries',
         'force_all_words': 'force_all_words',
@@ -73,7 +79,7 @@ class Highlight(object):
         'snippet_boundary': 'snippet_boundary'
     }
 
-    def __init__(self, fieldnames=None, fields=None, encoder=None, highlight_query=None, pre_tags="<strong>", post_tags="</strong>", no_match_size=1, fragment_size=256, number_of_fragments=0, limits_per_field=False, use_boundaries=False, force_all_words=False, allow_empty=False, emit_zones=False, force_snippets=False, around=5, start_snippet_id=1, html_strip_mode=None, snippet_boundary=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, fieldnames=None, fields=None, encoder=None, highlight_query=None, pre_tags="<strong>", post_tags="</strong>", no_match_size=None, fragment_size=256, number_of_fragments=0, limit=256, limit_words=0, limit_snippets=0, limits_per_field=False, use_boundaries=False, force_all_words=False, allow_empty=False, emit_zones=False, force_snippets=False, around=5, start_snippet_id=1, html_strip_mode=None, snippet_boundary=None, local_vars_configuration=None):  # noqa: E501
         """Highlight - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -88,6 +94,9 @@ class Highlight(object):
         self._no_match_size = None
         self._fragment_size = None
         self._number_of_fragments = None
+        self._limit = None
+        self._limit_words = None
+        self._limit_snippets = None
         self._limits_per_field = None
         self._use_boundaries = None
         self._force_all_words = None
@@ -106,8 +115,7 @@ class Highlight(object):
             self.fields = fields
         if encoder is not None:
             self.encoder = encoder
-        if highlight_query is not None:
-            self.highlight_query = highlight_query
+        self.highlight_query = highlight_query
         if pre_tags is not None:
             self.pre_tags = pre_tags
         if post_tags is not None:
@@ -118,6 +126,12 @@ class Highlight(object):
             self.fragment_size = fragment_size
         if number_of_fragments is not None:
             self.number_of_fragments = number_of_fragments
+        if limit is not None:
+            self.limit = limit
+        if limit_words is not None:
+            self.limit_words = limit_words
+        if limit_snippets is not None:
+            self.limit_snippets = limit_snippets
         if limits_per_field is not None:
             self.limits_per_field = limits_per_field
         if use_boundaries is not None:
@@ -158,6 +172,8 @@ class Highlight(object):
         """
 
         self._fieldnames = fieldnames
+        
+
     @property
     def fields(self):
         """Gets the fields of this Highlight.  # noqa: E501
@@ -177,6 +193,8 @@ class Highlight(object):
         """
 
         self._fields = fields
+        
+
     @property
     def encoder(self):
         """Gets the encoder of this Highlight.  # noqa: E501
@@ -202,13 +220,15 @@ class Highlight(object):
             )
 
         self._encoder = encoder
+        
+
     @property
     def highlight_query(self):
         """Gets the highlight_query of this Highlight.  # noqa: E501
 
 
         :return: The highlight_query of this Highlight.  # noqa: E501
-        :rtype: FulltextFilter
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type
         """
         return self._highlight_query
     @highlight_query.setter
@@ -217,10 +237,12 @@ class Highlight(object):
 
 
         :param highlight_query: The highlight_query of this Highlight.  # noqa: E501
-        :type highlight_query: FulltextFilter
+        :type highlight_query: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type
         """
 
         self._highlight_query = highlight_query
+        
+
     @property
     def pre_tags(self):
         """Gets the pre_tags of this Highlight.  # noqa: E501
@@ -240,6 +262,8 @@ class Highlight(object):
         """
 
         self._pre_tags = pre_tags
+        
+
     @property
     def post_tags(self):
         """Gets the post_tags of this Highlight.  # noqa: E501
@@ -259,6 +283,8 @@ class Highlight(object):
         """
 
         self._post_tags = post_tags
+        
+
     @property
     def no_match_size(self):
         """Gets the no_match_size of this Highlight.  # noqa: E501
@@ -284,6 +310,8 @@ class Highlight(object):
             )
 
         self._no_match_size = no_match_size
+        
+
     @property
     def fragment_size(self):
         """Gets the fragment_size of this Highlight.  # noqa: E501
@@ -303,6 +331,8 @@ class Highlight(object):
         """
 
         self._fragment_size = fragment_size
+        
+
     @property
     def number_of_fragments(self):
         """Gets the number_of_fragments of this Highlight.  # noqa: E501
@@ -322,6 +352,71 @@ class Highlight(object):
         """
 
         self._number_of_fragments = number_of_fragments
+        
+
+    @property
+    def limit(self):
+        """Gets the limit of this Highlight.  # noqa: E501
+
+
+        :return: The limit of this Highlight.  # noqa: E501
+        :rtype: int
+        """
+        return self._limit
+    @limit.setter
+    def limit(self, limit):
+        """Sets the limit of this Highlight.
+
+
+        :param limit: The limit of this Highlight.  # noqa: E501
+        :type limit: int
+        """
+
+        self._limit = limit
+        
+
+    @property
+    def limit_words(self):
+        """Gets the limit_words of this Highlight.  # noqa: E501
+
+
+        :return: The limit_words of this Highlight.  # noqa: E501
+        :rtype: int
+        """
+        return self._limit_words
+    @limit_words.setter
+    def limit_words(self, limit_words):
+        """Sets the limit_words of this Highlight.
+
+
+        :param limit_words: The limit_words of this Highlight.  # noqa: E501
+        :type limit_words: int
+        """
+
+        self._limit_words = limit_words
+        
+
+    @property
+    def limit_snippets(self):
+        """Gets the limit_snippets of this Highlight.  # noqa: E501
+
+
+        :return: The limit_snippets of this Highlight.  # noqa: E501
+        :rtype: int
+        """
+        return self._limit_snippets
+    @limit_snippets.setter
+    def limit_snippets(self, limit_snippets):
+        """Sets the limit_snippets of this Highlight.
+
+
+        :param limit_snippets: The limit_snippets of this Highlight.  # noqa: E501
+        :type limit_snippets: int
+        """
+
+        self._limit_snippets = limit_snippets
+        
+
     @property
     def limits_per_field(self):
         """Gets the limits_per_field of this Highlight.  # noqa: E501
@@ -341,6 +436,8 @@ class Highlight(object):
         """
 
         self._limits_per_field = limits_per_field
+        
+
     @property
     def use_boundaries(self):
         """Gets the use_boundaries of this Highlight.  # noqa: E501
@@ -360,6 +457,8 @@ class Highlight(object):
         """
 
         self._use_boundaries = use_boundaries
+        
+
     @property
     def force_all_words(self):
         """Gets the force_all_words of this Highlight.  # noqa: E501
@@ -379,6 +478,8 @@ class Highlight(object):
         """
 
         self._force_all_words = force_all_words
+        
+
     @property
     def allow_empty(self):
         """Gets the allow_empty of this Highlight.  # noqa: E501
@@ -398,6 +499,8 @@ class Highlight(object):
         """
 
         self._allow_empty = allow_empty
+        
+
     @property
     def emit_zones(self):
         """Gets the emit_zones of this Highlight.  # noqa: E501
@@ -417,6 +520,8 @@ class Highlight(object):
         """
 
         self._emit_zones = emit_zones
+        
+
     @property
     def force_snippets(self):
         """Gets the force_snippets of this Highlight.  # noqa: E501
@@ -436,6 +541,8 @@ class Highlight(object):
         """
 
         self._force_snippets = force_snippets
+        
+
     @property
     def around(self):
         """Gets the around of this Highlight.  # noqa: E501
@@ -455,6 +562,8 @@ class Highlight(object):
         """
 
         self._around = around
+        
+
     @property
     def start_snippet_id(self):
         """Gets the start_snippet_id of this Highlight.  # noqa: E501
@@ -474,6 +583,8 @@ class Highlight(object):
         """
 
         self._start_snippet_id = start_snippet_id
+        
+
     @property
     def html_strip_mode(self):
         """Gets the html_strip_mode of this Highlight.  # noqa: E501
@@ -499,6 +610,8 @@ class Highlight(object):
             )
 
         self._html_strip_mode = html_strip_mode
+        
+
     @property
     def snippet_boundary(self):
         """Gets the snippet_boundary of this Highlight.  # noqa: E501
@@ -524,6 +637,8 @@ class Highlight(object):
             )
 
         self._snippet_boundary = snippet_boundary
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

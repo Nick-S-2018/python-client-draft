@@ -77,6 +77,8 @@ class MatchOpFilter(object):
             raise ValueError("Invalid value for `query_string`, must not be `None`")  # noqa: E501
 
         self._query_string = query_string
+        
+
     @property
     def query_fields(self):
         """Gets the query_fields of this MatchOpFilter.  # noqa: E501
@@ -98,6 +100,8 @@ class MatchOpFilter(object):
             raise ValueError("Invalid value for `query_fields`, must not be `None`")  # noqa: E501
 
         self._query_fields = query_fields
+        
+
     @property
     def operator(self):
         """Gets the operator of this MatchOpFilter.  # noqa: E501
@@ -125,6 +129,8 @@ class MatchOpFilter(object):
             )
 
         self._operator = operator
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

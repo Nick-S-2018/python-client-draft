@@ -31,10 +31,10 @@ class RangeFilter(object):
     """
     openapi_types = {
         'field': 'str',
-        'lte': 'int',
-        'gte': 'int',
-        'lt': 'int',
-        'gt': 'int'
+        'lte': 'float',
+        'gte': 'float',
+        'lt': 'float',
+        'gt': 'float'
     }
 
     attribute_map = {
@@ -89,13 +89,15 @@ class RangeFilter(object):
             raise ValueError("Invalid value for `field`, must not be `None`")  # noqa: E501
 
         self._field = field
+        
+
     @property
     def lte(self):
         """Gets the lte of this RangeFilter.  # noqa: E501
 
 
         :return: The lte of this RangeFilter.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._lte
     @lte.setter
@@ -104,17 +106,19 @@ class RangeFilter(object):
 
 
         :param lte: The lte of this RangeFilter.  # noqa: E501
-        :type lte: int
+        :type lte: float
         """
 
         self._lte = lte
+        
+
     @property
     def gte(self):
         """Gets the gte of this RangeFilter.  # noqa: E501
 
 
         :return: The gte of this RangeFilter.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._gte
     @gte.setter
@@ -123,17 +127,19 @@ class RangeFilter(object):
 
 
         :param gte: The gte of this RangeFilter.  # noqa: E501
-        :type gte: int
+        :type gte: float
         """
 
         self._gte = gte
+        
+
     @property
     def lt(self):
         """Gets the lt of this RangeFilter.  # noqa: E501
 
 
         :return: The lt of this RangeFilter.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._lt
     @lt.setter
@@ -142,17 +148,19 @@ class RangeFilter(object):
 
 
         :param lt: The lt of this RangeFilter.  # noqa: E501
-        :type lt: int
+        :type lt: float
         """
 
         self._lt = lt
+        
+
     @property
     def gt(self):
         """Gets the gt of this RangeFilter.  # noqa: E501
 
 
         :return: The gt of this RangeFilter.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._gt
     @gt.setter
@@ -161,10 +169,12 @@ class RangeFilter(object):
 
 
         :param gt: The gt of this RangeFilter.  # noqa: E501
-        :type gt: int
+        :type gt: float
         """
 
         self._gt = gt
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -75,6 +75,8 @@ class GeoDistanceFilterLocationAnchor(object):
         """
 
         self._lat = lat
+        
+
     @property
     def lon(self):
         """Gets the lon of this GeoDistanceFilterLocationAnchor.  # noqa: E501
@@ -96,6 +98,8 @@ class GeoDistanceFilterLocationAnchor(object):
         """
 
         self._lon = lon
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

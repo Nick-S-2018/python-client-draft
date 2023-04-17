@@ -30,7 +30,7 @@ class PercolateRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'query': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}'
+        'query': 'PercolateRequestQuery'
     }
 
     attribute_map = {
@@ -54,7 +54,7 @@ class PercolateRequest(object):
 
 
         :return: The query of this PercolateRequest.  # noqa: E501
-        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        :rtype: PercolateRequestQuery
         """
         return self._query
     @query.setter
@@ -63,12 +63,14 @@ class PercolateRequest(object):
 
 
         :param query: The query of this PercolateRequest.  # noqa: E501
-        :type query: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        :type query: PercolateRequestQuery
         """
         if self.local_vars_configuration.client_side_validation and query is None:  # noqa: E501
             raise ValueError("Invalid value for `query`, must not be `None`")  # noqa: E501
 
         self._query = query
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

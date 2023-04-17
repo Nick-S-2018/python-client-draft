@@ -73,6 +73,8 @@ class SortMultiple(object):
             raise ValueError("Invalid value for `attrs`, must not be `None`")  # noqa: E501
 
         self._attrs = attrs
+        
+
     @property
     def replace(self):
         """Gets the replace of this SortMultiple.  # noqa: E501
@@ -94,6 +96,8 @@ class SortMultiple(object):
             raise ValueError("Invalid value for `replace`, must not be `None`")  # noqa: E501
 
         self._replace = replace
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

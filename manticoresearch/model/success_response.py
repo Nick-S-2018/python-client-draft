@@ -88,6 +88,8 @@ class SuccessResponse(object):
         """
 
         self._index = index
+        
+
     @property
     def id(self):
         """Gets the id of this SuccessResponse.  # noqa: E501
@@ -107,6 +109,8 @@ class SuccessResponse(object):
         """
 
         self._id = id
+        
+
     @property
     def created(self):
         """Gets the created of this SuccessResponse.  # noqa: E501
@@ -126,6 +130,8 @@ class SuccessResponse(object):
         """
 
         self._created = created
+        
+
     @property
     def result(self):
         """Gets the result of this SuccessResponse.  # noqa: E501
@@ -145,6 +151,8 @@ class SuccessResponse(object):
         """
 
         self._result = result
+        
+
     @property
     def found(self):
         """Gets the found of this SuccessResponse.  # noqa: E501
@@ -164,6 +172,8 @@ class SuccessResponse(object):
         """
 
         self._found = found
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

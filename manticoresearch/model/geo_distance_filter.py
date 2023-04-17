@@ -83,6 +83,8 @@ class GeoDistanceFilter(object):
         """
 
         self._location_anchor = location_anchor
+        
+
     @property
     def location_source(self):
         """Gets the location_source of this GeoDistanceFilter.  # noqa: E501
@@ -104,6 +106,8 @@ class GeoDistanceFilter(object):
         """
 
         self._location_source = location_source
+        
+
     @property
     def distance_type(self):
         """Gets the distance_type of this GeoDistanceFilter.  # noqa: E501
@@ -129,6 +133,8 @@ class GeoDistanceFilter(object):
             )
 
         self._distance_type = distance_type
+        
+
     @property
     def distance(self):
         """Gets the distance of this GeoDistanceFilter.  # noqa: E501
@@ -148,6 +154,8 @@ class GeoDistanceFilter(object):
         """
 
         self._distance = distance
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

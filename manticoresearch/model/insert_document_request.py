@@ -85,6 +85,8 @@ class InsertDocumentRequest(object):
             raise ValueError("Invalid value for `index`, must not be `None`")  # noqa: E501
 
         self._index = index
+        
+
     @property
     def cluster(self):
         """Gets the cluster of this InsertDocumentRequest.  # noqa: E501
@@ -106,6 +108,8 @@ class InsertDocumentRequest(object):
         """
 
         self._cluster = cluster
+        
+
     @property
     def id(self):
         """Gets the id of this InsertDocumentRequest.  # noqa: E501
@@ -127,6 +131,8 @@ class InsertDocumentRequest(object):
         """
 
         self._id = id
+        
+
     @property
     def doc(self):
         """Gets the doc of this InsertDocumentRequest.  # noqa: E501
@@ -150,6 +156,8 @@ class InsertDocumentRequest(object):
             raise ValueError("Invalid value for `doc`, must not be `None`")  # noqa: E501
 
         self._doc = doc
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

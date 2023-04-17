@@ -83,6 +83,8 @@ class SearchResponseHits(object):
         """
 
         self._max_score = max_score
+        
+
     @property
     def total(self):
         """Gets the total of this SearchResponseHits.  # noqa: E501
@@ -102,6 +104,8 @@ class SearchResponseHits(object):
         """
 
         self._total = total
+        
+
     @property
     def total_relation(self):
         """Gets the total_relation of this SearchResponseHits.  # noqa: E501
@@ -121,6 +125,8 @@ class SearchResponseHits(object):
         """
 
         self._total_relation = total_relation
+        
+
     @property
     def hits(self):
         """Gets the hits of this SearchResponseHits.  # noqa: E501
@@ -140,6 +146,8 @@ class SearchResponseHits(object):
         """
 
         self._hits = hits
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

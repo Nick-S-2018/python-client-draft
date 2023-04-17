@@ -73,6 +73,8 @@ class InFilter(object):
             raise ValueError("Invalid value for `field`, must not be `None`")  # noqa: E501
 
         self._field = field
+        
+
     @property
     def values(self):
         """Gets the values of this InFilter.  # noqa: E501
@@ -94,6 +96,8 @@ class InFilter(object):
             raise ValueError("Invalid value for `values`, must not be `None`")  # noqa: E501
 
         self._values = values
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

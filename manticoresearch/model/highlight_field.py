@@ -43,7 +43,7 @@ class HighlightField(object):
         'limit_snippets': 'limit_snippets'
     }
 
-    def __init__(self, name=None, limit=None, limit_words=None, limit_snippets=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, limit=256, limit_words=0, limit_snippets=0, local_vars_configuration=None):  # noqa: E501
         """HighlightField - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -84,6 +84,8 @@ class HighlightField(object):
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
+        
+
     @property
     def limit(self):
         """Gets the limit of this HighlightField.  # noqa: E501
@@ -103,6 +105,8 @@ class HighlightField(object):
         """
 
         self._limit = limit
+        
+
     @property
     def limit_words(self):
         """Gets the limit_words of this HighlightField.  # noqa: E501
@@ -122,6 +126,8 @@ class HighlightField(object):
         """
 
         self._limit_words = limit_words
+        
+
     @property
     def limit_snippets(self):
         """Gets the limit_snippets of this HighlightField.  # noqa: E501
@@ -141,6 +147,8 @@ class HighlightField(object):
         """
 
         self._limit_snippets = limit_snippets
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

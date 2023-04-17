@@ -60,6 +60,7 @@ from manticoresearch.model.not_filter_number import NotFilterNumber
 from manticoresearch.model.not_filter_string import NotFilterString
 from manticoresearch.model.option import Option
 from manticoresearch.model.percolate_request import PercolateRequest
+from manticoresearch.model.percolate_request_query import PercolateRequestQuery
 from manticoresearch.model.query_filter import QueryFilter
 from manticoresearch.model.range_filter import RangeFilter
 from manticoresearch.model.search_request import SearchRequest

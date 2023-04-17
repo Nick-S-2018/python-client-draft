@@ -73,6 +73,8 @@ class BulkResponse(object):
         """
 
         self._items = items
+        
+
     @property
     def error(self):
         """Gets the error of this BulkResponse.  # noqa: E501
@@ -92,6 +94,8 @@ class BulkResponse(object):
         """
 
         self._error = error
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

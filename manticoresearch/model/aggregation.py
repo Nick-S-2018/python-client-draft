@@ -53,8 +53,7 @@ class Aggregation(object):
         self.discriminator = None
 
         self.name = name
-        if field is not None:
-            self.field = field
+        self.field = field
         if size is not None:
             self.size = size
 
@@ -79,6 +78,8 @@ class Aggregation(object):
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
+        
+
     @property
     def field(self):
         """Gets the field of this Aggregation.  # noqa: E501
@@ -96,8 +97,12 @@ class Aggregation(object):
         :param field: The field of this Aggregation.  # noqa: E501
         :type field: str
         """
+        if self.local_vars_configuration.client_side_validation and field is None:  # noqa: E501
+            raise ValueError("Invalid value for `field`, must not be `None`")  # noqa: E501
 
         self._field = field
+        
+
     @property
     def size(self):
         """Gets the size of this Aggregation.  # noqa: E501
@@ -117,6 +122,8 @@ class Aggregation(object):
         """
 
         self._size = size
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -86,6 +86,8 @@ class DeleteDocumentRequest(object):
             raise ValueError("Invalid value for `index`, must not be `None`")  # noqa: E501
 
         self._index = index
+        
+
     @property
     def cluster(self):
         """Gets the cluster of this DeleteDocumentRequest.  # noqa: E501
@@ -107,6 +109,8 @@ class DeleteDocumentRequest(object):
         """
 
         self._cluster = cluster
+        
+
     @property
     def id(self):
         """Gets the id of this DeleteDocumentRequest.  # noqa: E501
@@ -128,6 +132,8 @@ class DeleteDocumentRequest(object):
         """
 
         self._id = id
+        
+
     @property
     def query(self):
         """Gets the query of this DeleteDocumentRequest.  # noqa: E501
@@ -149,6 +155,8 @@ class DeleteDocumentRequest(object):
         """
 
         self._query = query
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

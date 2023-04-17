@@ -83,6 +83,8 @@ class DeleteResponse(object):
         """
 
         self._index = index
+        
+
     @property
     def deleted(self):
         """Gets the deleted of this DeleteResponse.  # noqa: E501
@@ -102,6 +104,8 @@ class DeleteResponse(object):
         """
 
         self._deleted = deleted
+        
+
     @property
     def id(self):
         """Gets the id of this DeleteResponse.  # noqa: E501
@@ -121,6 +125,8 @@ class DeleteResponse(object):
         """
 
         self._id = id
+        
+
     @property
     def result(self):
         """Gets the result of this DeleteResponse.  # noqa: E501
@@ -140,6 +146,8 @@ class DeleteResponse(object):
         """
 
         self._result = result
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

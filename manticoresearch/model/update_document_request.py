@@ -33,7 +33,7 @@ class UpdateDocumentRequest(object):
         'index': 'str',
         'doc': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
         'id': 'int',
-        'query': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}'
+        'query': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type'
     }
 
     attribute_map = {
@@ -59,8 +59,7 @@ class UpdateDocumentRequest(object):
         self.doc = doc
         if id is not None:
             self.id = id
-        if query is not None:
-            self.query = query
+        self.query = query
 
     @property
     def index(self):
@@ -83,6 +82,8 @@ class UpdateDocumentRequest(object):
             raise ValueError("Invalid value for `index`, must not be `None`")  # noqa: E501
 
         self._index = index
+        
+
     @property
     def doc(self):
         """Gets the doc of this UpdateDocumentRequest.  # noqa: E501
@@ -106,6 +107,8 @@ class UpdateDocumentRequest(object):
             raise ValueError("Invalid value for `doc`, must not be `None`")  # noqa: E501
 
         self._doc = doc
+        
+
     @property
     def id(self):
         """Gets the id of this UpdateDocumentRequest.  # noqa: E501
@@ -127,6 +130,8 @@ class UpdateDocumentRequest(object):
         """
 
         self._id = id
+        
+
     @property
     def query(self):
         """Gets the query of this UpdateDocumentRequest.  # noqa: E501
@@ -134,7 +139,7 @@ class UpdateDocumentRequest(object):
         Query tree object  # noqa: E501
 
         :return: The query of this UpdateDocumentRequest.  # noqa: E501
-        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type
         """
         return self._query
     @query.setter
@@ -144,10 +149,12 @@ class UpdateDocumentRequest(object):
         Query tree object  # noqa: E501
 
         :param query: The query of this UpdateDocumentRequest.  # noqa: E501
-        :type query: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        :type query: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type
         """
 
         self._query = query
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -77,6 +77,8 @@ class SortMVA(object):
             raise ValueError("Invalid value for `attr`, must not be `None`")  # noqa: E501
 
         self._attr = attr
+        
+
     @property
     def order(self):
         """Gets the order of this SortMVA.  # noqa: E501
@@ -104,6 +106,8 @@ class SortMVA(object):
             )
 
         self._order = order
+        
+
     @property
     def mode(self):
         """Gets the mode of this SortMVA.  # noqa: E501
@@ -131,6 +135,8 @@ class SortMVA(object):
             )
 
         self._mode = mode
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

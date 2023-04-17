@@ -81,6 +81,8 @@ class Facet(object):
             raise ValueError("Invalid value for `attr`, must not be `None`")  # noqa: E501
 
         self._attr = attr
+        
+
     @property
     def alias(self):
         """Gets the alias of this Facet.  # noqa: E501
@@ -102,6 +104,8 @@ class Facet(object):
         """
 
         self._alias = alias
+        
+
     @property
     def limit(self):
         """Gets the limit of this Facet.  # noqa: E501
@@ -123,6 +127,8 @@ class Facet(object):
         """
 
         self._limit = limit
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

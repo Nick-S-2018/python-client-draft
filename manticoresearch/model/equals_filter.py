@@ -73,6 +73,8 @@ class EqualsFilter(object):
             raise ValueError("Invalid value for `field`, must not be `None`")  # noqa: E501
 
         self._field = field
+        
+
     @property
     def value(self):
         """Gets the value of this EqualsFilter.  # noqa: E501
@@ -94,6 +96,8 @@ class EqualsFilter(object):
             raise ValueError("Invalid value for `value`, must not be `None`")  # noqa: E501
 
         self._value = value
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

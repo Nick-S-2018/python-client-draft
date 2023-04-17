@@ -31,23 +31,26 @@ class SearchRequest(object):
     """
     openapi_types = {
         'index': 'str',
-        'fulltext_filter': 'object',
-        'attr_filter': 'object',
+        'query': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
+        'fulltext_filter': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
+        'attr_filter': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
         'limit': 'int',
         'offset': 'int',
         'max_matches': 'int',
-        'sort': '[object]',
+        'sort': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]',
         'sort_old': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]',
         'aggs': '[Aggregation]',
         'expressions': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]',
         'highlight': 'Highlight',
-        'source': 'object',
+        'source': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
         'options': '{str: (bool, date, datetime, dict, float, int, list, str, none_type)}',
-        'profile': 'bool'
+        'profile': 'bool',
+        'track_scores': 'bool'
     }
 
     attribute_map = {
         'index': 'index',
+        'query': 'query',
         'fulltext_filter': 'fulltext_filter',
         'attr_filter': 'attr_filter',
         'limit': 'limit',
@@ -60,16 +63,18 @@ class SearchRequest(object):
         'highlight': 'highlight',
         'source': 'source',
         'options': 'options',
-        'profile': 'profile'
+        'profile': 'profile',
+        'track_scores': 'track_scores'
     }
 
-    def __init__(self, index="", fulltext_filter=None, attr_filter=None, limit=None, offset=None, max_matches=None, sort=None, sort_old=None, aggs=None, expressions=None, highlight=None, source=None, options=None, profile=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, index="", query=None, fulltext_filter=None, attr_filter=None, limit=None, offset=None, max_matches=None, sort=None, sort_old=None, aggs=None, expressions=None, highlight=None, source=None, options=None, profile=None, track_scores=None, local_vars_configuration=None):  # noqa: E501
         """SearchRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._index = None
+        self._query = None
         self._fulltext_filter = None
         self._attr_filter = None
         self._limit = None
@@ -83,12 +88,12 @@ class SearchRequest(object):
         self._source = None
         self._options = None
         self._profile = None
+        self._track_scores = None
         self.discriminator = None
 
         self.index = index
-        from manticoresearch.model import FulltextFilter,QueryFilter,MatchFilter,MatchOpFilter,MatchPhraseFilter
-        if (fulltext_filter is None):
-            fulltext_filter = FulltextFilter()
+        if query is not None:
+            self.query = query
         if fulltext_filter is not None:
             self.fulltext_filter = fulltext_filter
         if attr_filter is not None:
@@ -115,6 +120,8 @@ class SearchRequest(object):
             self.options = options
         if profile is not None:
             self.profile = profile
+        if track_scores is not None:
+            self.track_scores = track_scores
 
     @property
     def index(self):
@@ -137,13 +144,40 @@ class SearchRequest(object):
             raise ValueError("Invalid value for `index`, must not be `None`")  # noqa: E501
 
         self._index = index
+        
+
+    @property
+    def query(self):
+        """Gets the query of this SearchRequest.  # noqa: E501
+
+
+        :return: The query of this SearchRequest.  # noqa: E501
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        """
+        return self._query
+    @query.setter
+    def query(self, query):
+        """Sets the query of this SearchRequest.
+
+
+        :param query: The query of this SearchRequest.  # noqa: E501
+        :type query: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+        """
+
+        self._query = query
+        
+        if self.fulltext_filter is not None:
+        	self.fulltext_filter = None;
+       	if self.attr_filter is not None:
+        	self.attr_filter = None;
+
     @property
     def fulltext_filter(self):
         """Gets the fulltext_filter of this SearchRequest.  # noqa: E501
 
 
         :return: The fulltext_filter of this SearchRequest.  # noqa: E501
-        :rtype: object
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
         return self._fulltext_filter
     @fulltext_filter.setter
@@ -152,17 +186,19 @@ class SearchRequest(object):
 
 
         :param fulltext_filter: The fulltext_filter of this SearchRequest.  # noqa: E501
-        :type fulltext_filter: object
+        :type fulltext_filter: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
 
         self._fulltext_filter = fulltext_filter
+        
+
     @property
     def attr_filter(self):
         """Gets the attr_filter of this SearchRequest.  # noqa: E501
 
 
         :return: The attr_filter of this SearchRequest.  # noqa: E501
-        :rtype: object
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
         return self._attr_filter
     @attr_filter.setter
@@ -171,10 +207,12 @@ class SearchRequest(object):
 
 
         :param attr_filter: The attr_filter of this SearchRequest.  # noqa: E501
-        :type attr_filter: object
+        :type attr_filter: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
 
         self._attr_filter = attr_filter
+        
+
     @property
     def limit(self):
         """Gets the limit of this SearchRequest.  # noqa: E501
@@ -194,6 +232,8 @@ class SearchRequest(object):
         """
 
         self._limit = limit
+        
+
     @property
     def offset(self):
         """Gets the offset of this SearchRequest.  # noqa: E501
@@ -213,6 +253,8 @@ class SearchRequest(object):
         """
 
         self._offset = offset
+        
+
     @property
     def max_matches(self):
         """Gets the max_matches of this SearchRequest.  # noqa: E501
@@ -232,13 +274,15 @@ class SearchRequest(object):
         """
 
         self._max_matches = max_matches
+        
+
     @property
     def sort(self):
         """Gets the sort of this SearchRequest.  # noqa: E501
 
 
         :return: The sort of this SearchRequest.  # noqa: E501
-        :rtype: [object]
+        :rtype: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
         return self._sort
     @sort.setter
@@ -247,10 +291,12 @@ class SearchRequest(object):
 
 
         :param sort: The sort of this SearchRequest.  # noqa: E501
-        :type sort: [object]
+        :type sort: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
 
         self._sort = sort
+        
+
     @property
     def sort_old(self):
         """Gets the sort_old of this SearchRequest.  # noqa: E501
@@ -270,6 +316,8 @@ class SearchRequest(object):
         """
 
         self._sort_old = sort_old
+        
+
     @property
     def aggs(self):
         """Gets the aggs of this SearchRequest.  # noqa: E501
@@ -289,6 +337,8 @@ class SearchRequest(object):
         """
 
         self._aggs = aggs
+        
+
     @property
     def expressions(self):
         """Gets the expressions of this SearchRequest.  # noqa: E501
@@ -308,6 +358,8 @@ class SearchRequest(object):
         """
 
         self._expressions = expressions
+        
+
     @property
     def highlight(self):
         """Gets the highlight of this SearchRequest.  # noqa: E501
@@ -327,13 +379,15 @@ class SearchRequest(object):
         """
 
         self._highlight = highlight
+        
+
     @property
     def source(self):
         """Gets the source of this SearchRequest.  # noqa: E501
 
 
         :return: The source of this SearchRequest.  # noqa: E501
-        :rtype: object
+        :rtype: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
         return self._source
     @source.setter
@@ -342,10 +396,12 @@ class SearchRequest(object):
 
 
         :param source: The source of this SearchRequest.  # noqa: E501
-        :type source: object
+        :type source: {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
         """
 
         self._source = source
+        
+
     @property
     def options(self):
         """Gets the options of this SearchRequest.  # noqa: E501
@@ -365,6 +421,8 @@ class SearchRequest(object):
         """
 
         self._options = options
+        
+
     @property
     def profile(self):
         """Gets the profile of this SearchRequest.  # noqa: E501
@@ -384,6 +442,29 @@ class SearchRequest(object):
         """
 
         self._profile = profile
+        
+
+    @property
+    def track_scores(self):
+        """Gets the track_scores of this SearchRequest.  # noqa: E501
+
+
+        :return: The track_scores of this SearchRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._track_scores
+    @track_scores.setter
+    def track_scores(self, track_scores):
+        """Sets the track_scores of this SearchRequest.
+
+
+        :param track_scores: The track_scores of this SearchRequest.  # noqa: E501
+        :type track_scores: bool
+        """
+
+        self._track_scores = track_scores
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -73,6 +73,8 @@ class SortOrder(object):
             raise ValueError("Invalid value for `attr`, must not be `None`")  # noqa: E501
 
         self._attr = attr
+        
+
     @property
     def order(self):
         """Gets the order of this SortOrder.  # noqa: E501
@@ -100,6 +102,8 @@ class SortOrder(object):
             )
 
         self._order = order
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

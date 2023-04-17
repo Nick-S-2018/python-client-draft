@@ -69,6 +69,8 @@ class MatchOp(object):
             raise ValueError("Invalid value for `query_info`, must not be `None`")  # noqa: E501
 
         self._query_info = query_info
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

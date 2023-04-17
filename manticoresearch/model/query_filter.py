@@ -69,6 +69,8 @@ class QueryFilter(object):
             raise ValueError("Invalid value for `query_string`, must not be `None`")  # noqa: E501
 
         self._query_string = query_string
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

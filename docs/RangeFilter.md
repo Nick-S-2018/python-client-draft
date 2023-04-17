@@ -5,10 +5,10 @@ Range attribute filter
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **field** | **str** |  | 
-**lte** | **int** |  | [optional] 
-**gte** | **int** |  | [optional] 
-**lt** | **int** |  | [optional] 
-**gt** | **int** |  | [optional] 
+**lte** | **float** |  | [optional] 
+**gte** | **float** |  | [optional] 
+**lt** | **float** |  | [optional] 
+**gt** | **float** |  | [optional] 
 
 [[Using in search requests]](SearchApi.md#RangeFilter)
 

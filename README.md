@@ -133,6 +133,7 @@ Class | Method | HTTP request | Description
  - [NotFilterString](docs/NotFilterString.md)
  - [Option](docs/Option.md)
  - [PercolateRequest](docs/PercolateRequest.md)
+ - [PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [QueryFilter](docs/QueryFilter.md)
  - [RangeFilter](docs/RangeFilter.md)
  - [SearchRequest](docs/SearchRequest.md)

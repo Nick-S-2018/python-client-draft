@@ -30,9 +30,9 @@ class BoolFilter(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'should': '[object]',
-        'must': '[object]',
-        'must_not': '[object]'
+        'should': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]',
+        'must': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]',
+        'must_not': '[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]'
     }
 
     attribute_map = {
@@ -65,7 +65,7 @@ class BoolFilter(object):
 
 
         :return: The should of this BoolFilter.  # noqa: E501
-        :rtype: [object]
+        :rtype: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
         return self._should
     @should.setter
@@ -74,17 +74,19 @@ class BoolFilter(object):
 
 
         :param should: The should of this BoolFilter.  # noqa: E501
-        :type should: [object]
+        :type should: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
 
         self._should = should
+        
+
     @property
     def must(self):
         """Gets the must of this BoolFilter.  # noqa: E501
 
 
         :return: The must of this BoolFilter.  # noqa: E501
-        :rtype: [object]
+        :rtype: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
         return self._must
     @must.setter
@@ -93,17 +95,19 @@ class BoolFilter(object):
 
 
         :param must: The must of this BoolFilter.  # noqa: E501
-        :type must: [object]
+        :type must: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
 
         self._must = must
+        
+
     @property
     def must_not(self):
         """Gets the must_not of this BoolFilter.  # noqa: E501
 
 
         :return: The must_not of this BoolFilter.  # noqa: E501
-        :rtype: [object]
+        :rtype: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
         return self._must_not
     @must_not.setter
@@ -112,10 +116,12 @@ class BoolFilter(object):
 
 
         :param must_not: The must_not of this BoolFilter.  # noqa: E501
-        :type must_not: [object]
+        :type must_not: [{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]
         """
 
         self._must_not = must_not
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

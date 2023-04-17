@@ -73,6 +73,8 @@ class ErrorResponse(object):
             raise ValueError("Invalid value for `error`, must not be `None`")  # noqa: E501
 
         self._error = error
+        
+
     @property
     def status(self):
         """Gets the status of this ErrorResponse.  # noqa: E501
@@ -94,6 +96,8 @@ class ErrorResponse(object):
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""

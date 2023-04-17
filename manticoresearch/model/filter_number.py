@@ -77,6 +77,8 @@ class FilterNumber(object):
             raise ValueError("Invalid value for `filter_field`, must not be `None`")  # noqa: E501
 
         self._filter_field = filter_field
+        
+
     @property
     def operation(self):
         """Gets the operation of this FilterNumber.  # noqa: E501
@@ -98,6 +100,8 @@ class FilterNumber(object):
             raise ValueError("Invalid value for `operation`, must not be `None`")  # noqa: E501
 
         self._operation = operation
+        
+
     @property
     def filter_value(self):
         """Gets the filter_value of this FilterNumber.  # noqa: E501
@@ -119,6 +123,8 @@ class FilterNumber(object):
             raise ValueError("Invalid value for `filter_value`, must not be `None`")  # noqa: E501
 
         self._filter_value = filter_value
+        
+
 
     def to_dict(self):
         """Returns the model properties as a dict"""
