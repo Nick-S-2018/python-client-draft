@@ -258,6 +258,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ### SourceByRules
 
 [[SourceByRules]](SourceByRules.md)
+
 [[Detailed information on search options]](https://manual.manticoresearch.com/Searching/Options#Search-options)
 ```python
     #Setting the `_source` property with an auxillary SourceByRules object
@@ -286,6 +287,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 [[SortOrder]](SortOrder.md)
 [[SortMVA]](SortMVA.md)
+
 [[Detailed information on sorting]](https://manual.manticoresearch.com/Searching/Sorting_and_ranking#HTTP)
 ```python
     #Setting the `sort` property with auxiliary objects
@@ -318,6 +320,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ### Aggregation
 
 [[Aggregation]](Aggregation.md)
+
 [[Detailed information on aggregations](https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations)
 ```python    
     #Setting the `aggs` property with an auxiliary object:
@@ -333,6 +336,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ### Highlight
 
 [[Highlight]](Highlight.md)
+
 [[Detailed information on highlighting]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
 ```python
     #Settting the `highlight` property with an auxiliary object:
@@ -352,6 +356,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### HighlightField
 
 [[HighlightField]](HighlightField.md)
+
 [[Detailed information on highlighting]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
 ```python
     #Settting the `highlight.fields` property with an auxiliary HighlightField object
@@ -427,6 +432,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### EqualsFilter
 
 [[EqualsFilter]](EqualsFilter.md)
+
 [[Detailed information on equality filters]](https://manual.manticoresearch.com/Searching/Filters#Equality-filters)
 ```python
     #Setting the `attr_filter` property using different attribute filter objects:
@@ -443,6 +449,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### InFilter
 
 [[InFilter]](InFilter.md)
+
 [[Detailed information on set filters]](https://manual.manticoresearch.com/Searching/Filters#Set-filters)
 ```python
     #Using an InFilter object
@@ -459,6 +466,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### RangeFilter
 
 [[RangeFilter]](RangeFilter.md)
+
 [[Detailed information on range filters]](https://manual.manticoresearch.com/Searching/Filters#Range-filters)
 ```python
     #Using a RangeFilter object
@@ -477,6 +485,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### GeoDistanceFilter
 
 [[GeoDistanceFilter]](GeoDistanceFilter.md)
+
 [[Detailed information on geo distance filters]](https://manual.manticoresearch.com/Searching/Filters#Geo-distance-filters)
 ```python
     #Using a GeoFilter object
@@ -495,6 +504,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 #### BoolFilter
 
 [[BoolFilter]](BoolFilter.md)
+
 [[Detailed information on Bool queries]](https://manual.manticoresearch.com/Searching/Filters#bool-query)
 ```python
     #Setting the `attr_filter` property using bool filter object:
