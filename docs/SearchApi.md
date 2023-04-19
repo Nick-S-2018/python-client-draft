@@ -20,13 +20,60 @@ Expects two parameters: the index name and an object with array of documents to 
 An example of the documents object:
 
   ```
-  {"query":{"percolate":{"document":{"content":"sample content"}}}}
+  {
+    "query":
+    {
+      "percolate":
+      {
+        "document":
+        {
+          "content":"sample content"
+        }
+      }
+    }
+  }
   ```
 
 Responds with an object with matched stored queries: 
 
   ```
-  {'timed_out':false,'hits':{'total':2,'max_score':1,'hits':[{'_index':'idx_pq_1','_type':'doc','_id':'2','_score':'1','_source':{'query':{'match':{'title':'some'},}}},{'_index':'idx_pq_1','_type':'doc','_id':'5','_score':'1','_source':{'query':{'ql':'some | none'}}}]}}
+  {
+    'timed_out':false,
+    'hits':
+    {
+      'total':2,
+      'max_score':1,
+      'hits':
+      [
+        {
+          '_index':'idx_pq_1',
+          '_type':'doc',
+          '_id':'2',
+          '_score':'1',
+          '_source':
+          {
+            'query':
+            {
+              'match':{'title':'some'}
+            }
+          }
+        },
+        {
+          '_index':'idx_pq_1',
+          '_type':'doc',
+          '_id':'5',
+          '_score':'1',
+          '_source':
+          {
+            'query':
+            {
+              'ql':'some | none'
+            }
+          }
+        }
+      ]
+    }
+  }
   ```
 
 
@@ -109,18 +156,52 @@ Expects an object with mandatory properties:
 Example :
 
   ```
-  {'index':'movies','query':{'bool':{'must':[{'query_string':' movie'}]}},'script_fields':{'myexpr':{'script':{'inline':'IF(rating>8,1,0)'}}},'sort':[{'myexpr':'desc'},{'_score':'desc'}],'profile':true}
+  {
+    'index':'movies',
+    'query':
+    {
+      'bool':
+      {
+        'must':[{'query_string':' movie'}]
+      }
+    },
+    'script_fields':
+    {
+      'myexpr':
+      {
+        'script':{'inline':'IF(rating>8,1,0)'
+      }
+    },
+    'sort':
+    [
+      {'myexpr':'desc'},
+      {'_score':'desc'}
+    ],
+    'profile':true
+  }
   ```
 
 It responds with an object with:
-- time of execution
-- if the query is timed out
 - an array with hits (matched documents) found
+- if the query is timed out
+- time of execution
 - if profiling is enabled, an additional array with profiling information attached
 
 
   ```
-  {'took':10,'timed_out':false,'hits':{'total':2,'hits':[{'_id':'1','_score':1,'_source':{'gid':11}},{'_id':'2','_score':1,'_source':{'gid':12}}]}}
+  {
+    'took':10,
+    'timed_out':false,
+    'hits':
+    {
+      'total':2,
+      'hits':
+      [
+        {'_id':'1','_score':1,'_source':{'gid':11}},
+        {'_id':'2','_score':1,'_source':{'gid':12}}
+      ]
+    }
+  }
   ```
 
 Alternatively, you can use auxiliary query objects to build your search queries as it's shown in the example below.
@@ -219,7 +300,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ```
 ### Building a search request with auxiliary objects
 
-[[Detailed information on search options]](https://manual.manticoresearch.com/Searching/Options#Search-options)
+[[Docs on search options in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Options#Search-options)
 ```python
     #Setting a search index:
     search_req = manticoresearch.model.SearchRequest()
@@ -259,9 +340,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### SourceByRules
 
-[[SourceByRules]](SourceByRules.md)
+[[SourceByRules - input parameters]](SourceByRules.md)
 
-[[Detailed information on the `source` property]](https://manual.manticoresearch.com/Searching/Search_results#Source-selection)
+[[Docs on the `source` property ]](https://manual.manticoresearch.com/Searching/Search_results#Source-selection)
 ```python
     #Setting the `_source` property with an auxillary SourceByRules object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -287,10 +368,10 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ### SortOrder
 ### SortMVA
 
-[[SortOrder]](SortOrder.md)
-[[SortMVA]](SortMVA.md)
+[[SortOrder - input parameters]](SortOrder.md)
+[[SortMVA - input parameters]](SortMVA.md)
 
-[[Detailed information on sorting]](https://manual.manticoresearch.com/Searching/Sorting_and_ranking#HTTP)
+[[Docs on sorting in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Sorting_and_ranking#HTTP)
 ```python
     #Setting the `sort` property with auxiliary objects
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -306,7 +387,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### Expressions
 
-[[Detailed information on expressions]](https://manual.manticoresearch.com/Searching/Expressions#Expressions-in-HTTP-JSON)
+[[Docs on expressions in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Expressions#Expressions-in-HTTP-JSON)
 ```python    
     #Setting the `expressions` property:
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -321,9 +402,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### Aggregation
 
-[[Aggregation]](Aggregation.md)
+[[Aggregation - input parameters]](Aggregation.md)
 
-[[Detailed information on aggregations](https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations)
+[[Docs on aggregations in Manticore Search Manual](https://manual.manticoresearch.com/Searching/Faceted_search#Aggregations)
 ```python    
     #Setting the `aggs` property with an auxiliary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -337,9 +418,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### Highlight
 
-[[Highlight]](Highlight.md)
+[[Highlight - input parameters]](Highlight.md)
 
-[[Detailed information on highlighting]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
+[[Docs on highlighting in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
 ```python
     #Settting the `highlight` property with an auxiliary object:
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -357,9 +438,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### HighlightField
 
-[[HighlightField]](HighlightField.md)
+[[HighlightField - input parameters]](HighlightField.md)
 
-[[Detailed information on highlighting]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
+[[Docs on highlight fields in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Highlighting#Highlighting)
 ```python
     #Settting the `highlight.fields` property with an auxiliary HighlightField object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -375,7 +456,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 ### FulltextFilter
 
-[[Detailed information on fulltext filters]](https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP)
+[[Docs on fulltext filters in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP)
 ```python
     #Setting the `fulltext_filter` property using different fulltext filter objects:
     
@@ -384,7 +465,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### QueryFilter
 
-[[QueryFilter]](QueryFilter.md)
+[[QueryFilter - input parameters]](QueryFilter.md)
 ```python    
 	#Using a QueryFilter object
     search_req.fulltext_filter = manticoresearch.model.QueryFilter('test')
@@ -395,7 +476,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### MatchFilter
 
-[[MatchFilter]](MatchFilter.md)
+[[MatchFilter - input parameters]](MatchFilter.md)
 ```python    
     #Using a MatchFilter object
     search_req = manticoresearch.model.SearchRequestindex='test'()
@@ -408,7 +489,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### MatchPhraseFilter
 
-[[MatchPhraseFilter]](MatchPhraseFilter.md)
+[[MatchPhraseFilter - input parameters]](MatchPhraseFilter.md)
 ```python    
     #Using a MatchPhraseFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -421,7 +502,7 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### MatchOpFilter
 
-[[MatchOpFilter]](MatchOpFilter.md)
+[[MatchOpFilter - input parameters]](MatchOpFilter.md)
 ```python    
 	#Using a MatchOpFilter object
     search_req.fulltext_filter = manticoresearch.model.MatchOpFilter('test1 test2', 'title', 'and')
@@ -433,9 +514,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 ### AttrFilter
 #### EqualsFilter
 
-[[EqualsFilter]](EqualsFilter.md)
+[[EqualsFilter - input parameters]](EqualsFilter.md)
 
-[[Detailed information on equality filters]](https://manual.manticoresearch.com/Searching/Filters#Equality-filters)
+[[Docs on equality filters in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Filters#Equality-filters)
 ```python
     #Setting the `attr_filter` property using different attribute filter objects:
     
@@ -450,9 +531,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### InFilter
 
-[[InFilter]](InFilter.md)
+[[InFilter - input parameters]](InFilter.md)
 
-[[Detailed information on set filters]](https://manual.manticoresearch.com/Searching/Filters#Set-filters)
+[[Docs on set filters in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Filters#Set-filters)
 ```python
     #Using an InFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -467,9 +548,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### RangeFilter
 
-[[RangeFilter]](RangeFilter.md)
+[[RangeFilter - input parameters]](RangeFilter.md)
 
-[[Detailed information on range filters]](https://manual.manticoresearch.com/Searching/Filters#Range-filters)
+[[Docs on range filters in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Filters#Range-filters)
 ```python
     #Using a RangeFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -486,9 +567,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### GeoDistanceFilter
 
-[[GeoDistanceFilter]](GeoDistanceFilter.md)
+[[GeoDistanceFilter - input parameters]](GeoDistanceFilter.md)
 
-[[Detailed information on geo distance filters]](https://manual.manticoresearch.com/Searching/Filters#Geo-distance-filters)
+[[Docs on geo distance filters in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Filters#Geo-distance-filters)
 ```python
     #Using a GeoFilter object
     search_req = manticoresearch.model.SearchRequest(index='test')
@@ -505,9 +586,9 @@ with manticoresearch.ApiClient(configuration) as api_client:
 
 #### BoolFilter
 
-[[BoolFilter]](BoolFilter.md)
+[[BoolFilter - input parameters]](BoolFilter.md)
 
-[[Detailed information on Bool queries]](https://manual.manticoresearch.com/Searching/Filters#bool-query)
+[[Docs on bool queries in Manticore Search Manual]](https://manual.manticoresearch.com/Searching/Filters#bool-query)
 ```python
     #Setting the `attr_filter` property using bool filter object:
     search_req = manticoresearch.model.SearchRequest(index='test')
